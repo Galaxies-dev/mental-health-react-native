@@ -1,7 +1,7 @@
 import { useAuth } from '@/providers/AuthProvider';
 import { Ionicons } from '@expo/vector-icons';
 import { Link, Stack, useRouter } from 'expo-router';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import { ChannelList, ChannelPreviewMessenger, useChatContext } from 'stream-chat-expo';
 import React from 'react';
 
@@ -22,6 +22,7 @@ const Page = () => {
     watch: true,
   };
 
+  // Custom list item for the channel list
   const CustomListItem = (props: any) => {
     const { unread } = props;
     const backgroundColor = unread ? 'bg-blue-100' : 'bg-white';

@@ -25,6 +25,7 @@ const Page = () => {
     );
   }
 
+  // Handle thread selection through atoms
   const handleThreadSelect = (thread: any) => {
     setSelectedThread(thread);
     setSelectedChannel(channel);
