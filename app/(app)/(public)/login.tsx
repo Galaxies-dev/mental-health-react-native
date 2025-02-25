@@ -48,7 +48,6 @@ const Page = () => {
 
     try {
       const result = await onLogin(data.email, data.password);
-      console.log('result', result);
     } catch (e) {
       Alert.alert('Error', 'Could not log in');
     } finally {

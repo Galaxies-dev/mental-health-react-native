@@ -6,7 +6,6 @@ const Layout = () => {
   const { authState } = useAuth();
 
   if (authState?.authenticated) {
-    console.log('authState?.authenticated in public', authState?.authenticated);
     return <Redirect href="/(app)/(authenticated)/(tabs)" />;
   }
 
