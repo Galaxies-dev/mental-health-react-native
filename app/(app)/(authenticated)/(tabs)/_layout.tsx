@@ -6,8 +6,6 @@ import { useAuth } from '@/providers/AuthProvider';
 import { TouchableOpacity } from 'react-native';
 // https://github.com/EvanBacon/expo-router-forms-components/blob/main/components/ui/Tabs.tsx
 export default function TabLayout() {
-  const { onLogout } = useAuth();
-
   return (
     <Tabs
       screenOptions={
@@ -36,11 +34,6 @@ export default function TabLayout() {
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="home-outline" size={size} color={color} />
           ),
-          headerRight: () => (
-            <TouchableOpacity onPress={onLogout} className="mr-4">
-              <Ionicons name="log-out-outline" size={24} color="black" />
-            </TouchableOpacity>
-          ),
         }}
       />
       <Tabs.Screen
@@ -50,6 +43,16 @@ export default function TabLayout() {
           title: 'Chats',
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="chatbubble-outline" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          tabBarLabel: 'Profile',
+          title: 'Profile',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="person-outline" size={size} color={color} />
           ),
         }}
       />

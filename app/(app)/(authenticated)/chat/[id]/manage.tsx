@@ -20,7 +20,6 @@ const Page = () => {
   const addUserToChannel = async (userId: string) => {
     const result = await channel.addMembers([userId], {
       text: 'Welcome a new member!',
-      user_id: client.user!.id,
     });
   };
 

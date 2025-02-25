@@ -27,7 +27,7 @@ type FormData = z.infer<typeof schema>;
 
 const Page = () => {
   const [loading, setLoading] = useState(false);
-  const { onLogin } = useAuth();
+  const { signIn } = useAuth();
 
   const {
     control,
@@ -47,7 +47,7 @@ const Page = () => {
     setLoading(true);
 
     try {
-      const result = await onLogin(data.email, data.password);
+      const result = await signIn(data.email, data.password);
     } catch (e) {
       Alert.alert('Error', 'Could not log in');
     } finally {

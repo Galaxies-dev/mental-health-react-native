@@ -11,8 +11,8 @@ interface AuthProps {
     email: string | null;
   };
   onRegister: (email: string, password: string) => Promise<any>;
-  onLogin: (email: string, password: string) => Promise<any>;
-  onLogout: () => Promise<any>;
+  signIn: (email: string, password: string) => Promise<any>;
+  signOut: () => Promise<any>;
   initialized: boolean;
   isTherapist: boolean;
 }
@@ -90,7 +90,7 @@ export const AuthProvider = ({ children }: any) => {
     });
   };
 
-  const login = async (email: string, password: string) => {
+  const signIn = async (email: string, password: string) => {
     const result = await fetch(`${API_URL}/auth/login`, {
       method: 'POST',
       headers: {
@@ -132,7 +132,7 @@ export const AuthProvider = ({ children }: any) => {
     return json;
   };
 
-  const logout = async () => {
+  const signOut = async () => {
     await storage.removeItem(TOKEN_KEY);
 
     setAuthState(EMPTY_AUTH_STATE);
@@ -142,8 +142,8 @@ export const AuthProvider = ({ children }: any) => {
 
   const value = {
     onRegister: register,
-    onLogin: login,
-    onLogout: logout,
+    signIn,
+    signOut,
     authState,
     initialized,
     isTherapist,

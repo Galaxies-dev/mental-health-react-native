@@ -6,9 +6,18 @@ import { useAuth } from './AuthProvider';
 
 const client = StreamChat.getInstance(process.env.EXPO_PUBLIC_STREAM_ACCESS_KEY as string);
 
+const chatTheme = {
+  channelPreview: {
+    container: {
+      backgroundColor: 'transparent',
+    },
+  },
+};
+
 export default function ChatProvider({ children }: PropsWithChildren) {
   const [isReady, setIsReady] = useState(false);
   const { authState } = useAuth();
+  const [thread, setThread] = useState<any>(null);
 
   useEffect(() => {
     if (!authState?.authenticated) {
@@ -41,7 +50,7 @@ export default function ChatProvider({ children }: PropsWithChildren) {
   }
 
   return (
-    <OverlayProvider>
+    <OverlayProvider value={{ style: chatTheme }}>
       <Chat client={client}>{children}</Chat>
     </OverlayProvider>
   );
