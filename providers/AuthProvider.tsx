@@ -5,6 +5,7 @@ import { Platform } from 'react-native';
 interface AuthProps {
   authState: {
     token: string | null;
+    jwt: string | null;
     authenticated: boolean | null;
     user_id: string | null;
     role: string | null;
@@ -51,6 +52,7 @@ const storage = {
 
 const EMPTY_AUTH_STATE = {
   token: null,
+  jwt: null,
   authenticated: null,
   user_id: null,
   role: null,
@@ -60,6 +62,7 @@ const EMPTY_AUTH_STATE = {
 export const AuthProvider = ({ children }: any) => {
   const [authState, setAuthState] = useState<{
     token: string | null;
+    jwt: string | null;
     authenticated: boolean | null;
     user_id: string | null;
     role: string | null;
@@ -83,6 +86,7 @@ export const AuthProvider = ({ children }: any) => {
   const updateAuthStateFromToken = (object: any) => {
     setAuthState({
       token: object.token,
+      jwt: object.jwt,
       authenticated: true,
       user_id: object.user.id,
       role: object.user.role,

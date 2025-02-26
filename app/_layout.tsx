@@ -8,7 +8,7 @@ import { StatusBar } from 'expo-status-bar';
 import '@/global.css';
 import { AuthProvider, useAuth } from '@/providers/AuthProvider';
 import { OverlayProvider } from 'stream-chat-expo';
-
+import { AppointmentProvider } from '../providers/AppointmentProvider';
 
 const InitialLayout = () => {
   const { authState, initialized } = useAuth();
@@ -28,16 +28,18 @@ const RootLayout = () => {
   const colorScheme = useColorScheme();
 
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <OverlayProvider>
-        <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-          <AuthProvider>
-            <StatusBar style="auto" />
-            <InitialLayout />
-          </AuthProvider>
-        </ThemeProvider>
-      </OverlayProvider>
-    </GestureHandlerRootView>
+    <AppointmentProvider>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <OverlayProvider>
+          <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+            <AuthProvider>
+              <StatusBar style="auto" />
+              <InitialLayout />
+            </AuthProvider>
+          </ThemeProvider>
+        </OverlayProvider>
+      </GestureHandlerRootView>
+    </AppointmentProvider>
   );
 };
 
