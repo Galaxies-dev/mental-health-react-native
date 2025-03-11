@@ -8,6 +8,7 @@ export interface Consultation {
   dateTime: string;
   status: ConsultationStatus;
   notes?: string;
+  clientEmail?: string;
 }
 
 export enum ConsultationStatus {
@@ -27,10 +28,12 @@ interface AppointmentProviderProps {
   children: ReactNode;
 }
 
-export const API_URL = Platform.select({
-  ios: process.env.EXPO_PUBLIC_API_URL,
-  android: 'http://10.0.2.2:3000',
-});
+// export const API_URL = Platform.select({
+//   ios: process.env.EXPO_PUBLIC_API_URL,
+//   android: 'http://10.0.2.2:3000',
+// });
+
+export const API_URL = 'https://7ec6-2003-f2-6f15-f819-41ac-4755-cfae-aa2c.ngrok-free.app';
 
 // Create context
 const AppointmentContext = createContext<AppointmentContextType | undefined>(undefined);

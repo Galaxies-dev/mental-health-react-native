@@ -39,7 +39,7 @@ const Layout = () => {
             <Stack.Screen name="chat/[id]/manage" options={{ title: 'Manage Chat' }} />
             <Stack.Screen
               name="consultation/schedule"
-              options={{ title: 'Schedule Consultation' }}
+              options={{ title: 'Schedule Consultation', headerBackTitle: 'Back' }}
             />
           </Stack>
         </AppointmentProvider>

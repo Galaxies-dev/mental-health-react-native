@@ -17,7 +17,6 @@ const chatTheme = {
 export default function ChatProvider({ children }: PropsWithChildren) {
   const [isReady, setIsReady] = useState(false);
   const { authState } = useAuth();
-  const [thread, setThread] = useState<any>(null);
 
   useEffect(() => {
     if (!authState?.authenticated) {

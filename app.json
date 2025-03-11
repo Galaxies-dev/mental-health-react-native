@@ -59,7 +59,12 @@
         }
       ],
       "expo-secure-store",
-      "@stream-io/video-react-native-sdk",
+      [
+        "@stream-io/video-react-native-sdk",
+        {
+          "androidKeepCallAlive": true
+        }
+      ],
       [
         "@config-plugins/react-native-webrtc",
         {
@@ -67,7 +72,26 @@
           "microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone"
         }
       ],
-      "expo-build-properties"
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "extraMavenRepos": ["../../node_modules/@notifee/react-native/android/libs"]
+          },
+          "ios": {
+            "infoPlist": {
+              "UIBackgroundModes": ["audio", "fetch", "remote-notification"]
+            }
+          }
+        }
+      ],
+      [
+        "expo-video",
+        {
+          "supportsBackgroundPlayback": true,
+          "supportsPictureInPicture": true
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true

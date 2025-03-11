@@ -84,6 +84,44 @@ const Page = () => {
               </Pressable>
             </View>
           )}
+          contentContainerClassName=""
+        />
+      )}
+
+      {isTherapist && (
+        <FlatList
+          data={appointments}
+          keyExtractor={(item) => item.id}
+          onRefresh={loadAppointmenets}
+          refreshing={refreshing}
+          ListHeaderComponent={() => (
+            <View className="mb-4">
+              <Text className="text-xl font-bold">Upcoming Appointments</Text>
+              <Text className="text-gray-600">Manage your scheduled sessions</Text>
+            </View>
+          )}
+          renderItem={({ item }) => (
+            <TouchableOpacity className="bg-white rounded-lg p-4 shadow-sm border border-gray-100">
+              <View className="flex-row justify-between items-center">
+                <View>
+                  <Text className="font-semibold text-lg">{item.status}</Text>
+                  <Text className="text-gray-600">{new Date(item.dateTime).toLocaleString()}</Text>
+                  <Text className="text-gray-700 mt-1">Client: {item.clientEmail}</Text>
+                </View>
+                <Link href={`/consultation/${item.id}`} asChild>
+                  <TouchableOpacity className="bg-blue-600 px-4 py-2 rounded-lg">
+                    <Text className="text-white font-medium">Enter Session</Text>
+                  </TouchableOpacity>
+                </Link>
+              </View>
+            </TouchableOpacity>
+          )}
+          ListEmptyComponent={() => (
+            <View className="bg-gray-50 rounded-lg p-6 items-center">
+              <Text className="font-semibold text-lg text-center">No upcoming appointments</Text>
+              <Text className="text-gray-600 text-center mt-1">Your schedule is clear for now</Text>
+            </View>
+          )}
           contentContainerClassName="gap-4"
         />
       )}
