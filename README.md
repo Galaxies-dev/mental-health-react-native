@@ -1,50 +1,89 @@
-# Welcome to your Expo app 👋
+# React Native Mental Health App with Stream Chat & Video Call
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This is a React Native Mental Health App that leverages [Stream](https://getstream.io/)'s powerful chat and video calling capabilities to connect patients with therapists. The app features secure real-time messaging, video consultations, appointment scheduling, and support groups - all powered by Stream's robust communication infrastructure.
 
-## Get started
+Key Stream features include:
 
-1. Install dependencies
+- Real-time chat between patients and therapists
+- Group chat rooms for support communities
+- Secure video calling for remote therapy sessions
+- Message history and thread discussions
+- Rich messaging with reactions and attachments
+- Presence indicators and typing events
+- Moderation tools for content safety
+- Video session recording and automatic transcription
 
-   ```bash
-   npm install
-   ```
+Featured Packages:
 
-2. Start the app
+- [Expo Router](https://docs.expo.dev/routing/introduction/) file-based navigation
+- [Stream Chat](https://getstream.io/chat/docs/react-native/) for chat
+- [Stream Video](https://getstream.io/video/docs/react-native/) for video call
+- [Stream Moderation](https://getstream.io/moderation/docs/) for content moderation
+- [NativeWind](https://www.nativewind.dev/) for styling
+- [Expo Video](https://docs.expo.dev/versions/latest/sdk/video/) for video playback
+- [Datetime Picker](@react-native-community/datetimepicker) for date and time picker
+- [Jotai](https://jotai.pmnd.rs/) for state management
+- [React Hook Form](https://react-hook-form.com/) for form handling
+- [Zod](https://zod.dev/) for schema validation
+- [React Native Incall Manager](https://github.com/react-native-incall-manager/react-native-incall-manager) for audio handling
+- [React Native Secure Store](https://github.com/react-native-securestore/react-native-securestore) for secure storage
 
-   ```bash
-    npx expo start
-   ```
+## Setup
 
-In the output, you'll find options to open the app in a
+### Environment Setup
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+Make sure you have the [Expo CLI](https://docs.expo.dev/get-started/set-up-your-environment/) installed.
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+Because we are using pre-built and a custom development client, you should download [Android Studio](https://developer.android.com/studio) and [Xcode](https://developer.apple.com/xcode/) to your Mac. For more information on setting up your development environment, refer to the [Expo documentation](https://docs.expo.dev/workflow/android-studio-emulator/) for Android Studio and the [React Native documentation](https://reactnative.dev/docs/environment-setup?guide=native) for Xcode.
 
-## Get a fresh project
+### App Setup
 
-When you're ready, run:
+To build the app, perform the following steps:
 
-```bash
-npm run reset-project
-```
+1. Clone the repository
+2. Run `npm install`
+3. Run `npx expo prebuild`
+4. Run `npx expo run:ios` or `npx expo run:android`
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## API Setup
 
-## Learn more
+1. Clone the [Auth API](https://github.com/Galaxies-dev/mental-health-api)
+2. Follow the instructions and add your Stream credentials in the `.env` file
+3. Update the `.env` file in the Expo project with your API URL
 
-To learn more about developing your project with Expo, look at the following resources:
+## Demo
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+<div style="display: flex; flex-direction: 'row';">
+<img src="./screenshots/1.gif" width=30%>
+<img src="./screenshots/2.gif" width=30%>
+<img src="./screenshots/3.gif" width=30%>
+<img src="./screenshots/4.gif" width=30%>
+<img src="./screenshots/5.gif" width=30%>
+<img src="./screenshots/6.gif" width=30%>
+<img src="./screenshots/7.gif" width=30%>
 
-## Join the community
 
-Join our community of developers creating universal apps.
+</div>
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## App Screenshots
+
+<div style="display: flex; flex-direction: 'row';">
+<img src="./screenshots/1.png" width=30%>
+<img src="./screenshots/2.png" width=30%>
+<img src="./screenshots/3.png" width=30%>
+<img src="./screenshots/4.png" width=30%>
+<img src="./screenshots/5.png" width=30%>
+<img src="./screenshots/7.png" width=30%>
+<img src="./screenshots/8.png" width=30%>
+
+</div>
+
+
+
+## 🚀 More
+
+**Take a shortcut from web developer to mobile development fluency with guided learning**
+
+Enjoyed this project? Learn to use React Native to build production-ready, native mobile apps for both iOS and Android based on your existing web development skills.
+
+<a href="https://galaxies.dev"><img src="banner.png" height="auto" width="100%"></a>

@@ -3,7 +3,7 @@ import { Ionicons } from '@expo/vector-icons';
 import BlurTabBarBackground from '@/components/TabBarBackground.ios';
 import { HapticTab } from '@/components/HapticTab';
 import { useAuth } from '@/providers/AuthProvider';
-import { TouchableOpacity } from 'react-native';
+
 // https://github.com/EvanBacon/expo-router-forms-components/blob/main/components/ui/Tabs.tsx
 export default function TabLayout() {
   const { isTherapist } = useAuth();
@@ -52,7 +52,7 @@ export default function TabLayout() {
         name="recordings"
         options={{
           tabBarLabel: 'Recordings',
-          title: '  ',
+          title: 'Recordings',
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="recording-outline" size={size} color={color} />
           ),

@@ -2,7 +2,6 @@ import { useAuth } from '@/providers/AuthProvider';
 import {
   CallControlProps,
   ToggleAudioPublishingButton as ToggleMic,
-  useCall,
   ToggleCameraFaceButton,
   ReactionsButton,
   HangUpCallButton,

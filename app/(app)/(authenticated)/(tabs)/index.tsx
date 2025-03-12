@@ -1,30 +1,53 @@
-import { View, Text, Pressable, ScrollView, TouchableOpacity, FlatList } from 'react-native';
-import { MaterialIcons, FontAwesome5 } from '@expo/vector-icons';
-import { Link } from 'expo-router';
-import { useEffect, useState } from 'react';
-import { useAppointments } from '@/providers/AppointmentProvider';
+import { View, Text, Pressable, TouchableOpacity, FlatList } from 'react-native';
+import { MaterialIcons, FontAwesome5, Ionicons } from '@expo/vector-icons';
+import { Link, useFocusEffect } from 'expo-router';
+import { useState, useCallback } from 'react';
+import { useAppointments, ConsultationStatus } from '@/providers/AppointmentProvider';
 import { Consultation } from '@/providers/AppointmentProvider';
 import { useAuth } from '@/providers/AuthProvider';
 import React from 'react';
 
 const Page = () => {
-  const { getAppointments } = useAppointments();
+  const { getAppointments, updateAppointment } = useAppointments();
   const [appointments, setAppointments] = useState<Consultation[]>([]);
   const { isTherapist } = useAuth();
   const [refreshing, setRefreshing] = useState(false);
 
-  useEffect(() => {
-    loadAppointmenets();
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      loadAppointmenets();
+    }, [])
+  );
 
   const loadAppointmenets = async () => {
     const appointments = await getAppointments();
-    console.log(appointments);
     setAppointments(appointments);
   };
 
   const callTherapist = () => {
     console.log('call therapist');
+  };
+
+  const confirmSession = async (id: string) => {
+    const updatedAppointment = await updateAppointment(id, {
+      status: ConsultationStatus.Confirmed,
+    });
+    setAppointments(
+      appointments.map((appointment) =>
+        appointment.id === id ? { ...appointment, status: updatedAppointment.status } : appointment
+      )
+    );
+  };
+
+  const cancelSession = async (id: string) => {
+    const updatedAppointment = await updateAppointment(id, {
+      status: ConsultationStatus.Cancelled,
+    });
+    setAppointments(
+      appointments.map((appointment) =>
+        appointment.id === id ? { ...appointment, status: updatedAppointment.status } : appointment
+      )
+    );
   };
 
   return (
@@ -33,6 +56,7 @@ const Page = () => {
         <FlatList
           data={appointments}
           onRefresh={loadAppointmenets}
+          showsVerticalScrollIndicator={false}
           refreshing={refreshing}
           ListHeaderComponent={() => (
             <View className="flex-row gap-4 mb-6">
@@ -56,8 +80,25 @@ const Page = () => {
           )}
           renderItem={({ item }) => (
             <Link href={`/consultation/${item.id}`} asChild>
-              <TouchableOpacity className="border-l-4 border-green-500 pl-3 py-2">
-                <Text className="font-semibold">Next Session</Text>
+              <TouchableOpacity
+                className={`border-l-4 pl-3 py-2 ${
+                  item.status === ConsultationStatus.Confirmed
+                    ? 'border-green-500'
+                    : item.status === ConsultationStatus.Pending
+                    ? 'border-yellow-500'
+                    : item.status === ConsultationStatus.Cancelled
+                    ? 'border-red-500'
+                    : 'border-gray-500'
+                }`}>
+                <Text className="font-semibold">
+                  {item.status === ConsultationStatus.Confirmed
+                    ? 'Confirmed Session'
+                    : item.status === ConsultationStatus.Pending
+                    ? 'Pending Session'
+                    : item.status === ConsultationStatus.Cancelled
+                    ? 'Cancelled Session'
+                    : 'Completed Session'}
+                </Text>
                 <Text className="text-gray-600">{new Date(item.dateTime).toLocaleString()}</Text>
                 <Text className="text-gray-600">Dr. Simon Grimm</Text>
               </TouchableOpacity>
@@ -91,6 +132,7 @@ const Page = () => {
       {isTherapist && (
         <FlatList
           data={appointments}
+          showsVerticalScrollIndicator={false}
           keyExtractor={(item) => item.id}
           onRefresh={loadAppointmenets}
           refreshing={refreshing}
@@ -104,15 +146,46 @@ const Page = () => {
             <TouchableOpacity className="bg-white rounded-lg p-4 shadow-sm border border-gray-100">
               <View className="flex-row justify-between items-center">
                 <View>
-                  <Text className="font-semibold text-lg">{item.status}</Text>
+                  <View className="flex-row items-center">
+                    {item.status === 'Pending' && (
+                      <Ionicons name="time-outline" size={24} color="#6B7280" />
+                    )}
+                    {item.status === 'Confirmed' && (
+                      <Ionicons name="checkmark-circle-outline" size={24} color="#059669" />
+                    )}
+                    {item.status === 'Cancelled' && (
+                      <Ionicons name="close-circle-outline" size={24} color="#DC2626" />
+                    )}
+                    {item.status === 'Completed' && (
+                      <Ionicons name="checkmark-done-circle-outline" size={24} color="#1D4ED8" />
+                    )}
+                    <Text className="font-semibold text-lg ml-2">{item.status}</Text>
+                  </View>
                   <Text className="text-gray-600">{new Date(item.dateTime).toLocaleString()}</Text>
                   <Text className="text-gray-700 mt-1">Client: {item.clientEmail}</Text>
                 </View>
-                <Link href={`/consultation/${item.id}`} asChild>
-                  <TouchableOpacity className="bg-blue-600 px-4 py-2 rounded-lg">
-                    <Text className="text-white font-medium">Enter Session</Text>
-                  </TouchableOpacity>
-                </Link>
+                {item.status === 'Pending' && (
+                  <View className="flex-row gap-2">
+                    <TouchableOpacity
+                      className="bg-blue-600 px-4 py-2 rounded-lg"
+                      onPress={() => confirmSession(item.id)}>
+                      <Text className="text-white font-medium">Confirm</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      className="bg-red-600 px-4 py-2 rounded-lg"
+                      onPress={() => cancelSession(item.id)}>
+                      <Text className="text-white font-medium">Cancel</Text>
+                    </TouchableOpacity>
+                  </View>
+                )}
+
+                {item.status === 'Confirmed' && (
+                  <Link href={`/consultation/${item.id}`} asChild>
+                    <TouchableOpacity className="bg-blue-600 px-4 py-2 rounded-lg">
+                      <Text className="text-white font-medium">Enter Session</Text>
+                    </TouchableOpacity>
+                  </Link>
+                )}
               </View>
             </TouchableOpacity>
           )}
