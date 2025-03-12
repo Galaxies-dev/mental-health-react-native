@@ -81,11 +81,11 @@ To build the app, perform the following steps:
 ## Stream Screenshots
 
 <div style="display: flex; flex-direction: 'row';">
-<img src="./screenshots/stream1.png" width=30%>
-<img src="./screenshots/stream2.png" width=30%>
-<img src="./screenshots/stream3.png" width=30%>
-<img src="./screenshots/stream4.png" width=30%>
-<img src="./screenshots/stream5.png" width=30%>
+<img src="./screenshots/stream1.png" width=45%>
+<img src="./screenshots/stream2.png" width=45%>
+<img src="./screenshots/stream3.png" width=45%>
+<img src="./screenshots/stream4.png" width=45%>
+<img src="./screenshots/stream5.png" width=45%>
 <img src="./screenshots/stream7.png" width=30%>
 
 </div>
