@@ -1,7 +1,17 @@
+/**
+ * AuthProvider.tsx
+ *
+ * This provider manages authentication state and operations throughout the app.
+ * It handles user authentication, registration, and session management using JWT tokens.
+ * The provider uses SecureStore for native platforms and localStorage for web to persist auth data.
+ */
 import { createContext, useContext, useEffect, useState } from 'react';
 import * as SecureStore from 'expo-secure-store';
 import { Platform } from 'react-native';
 
+/**
+ * Interface defining the authentication context properties and methods
+ */
 interface AuthProps {
   authState: {
     token: string | null;
@@ -18,17 +28,20 @@ interface AuthProps {
   isTherapist: boolean;
 }
 
+// Key used for storing the JWT token in secure storage
 const TOKEN_KEY = 'user-jwt';
-// export const API_URL = Platform.select({
-//   ios: process.env.EXPO_PUBLIC_API_URL,
-//   android: 'http://10.0.2.2:3000',
-// });
+export const API_URL = Platform.select({
+  ios: process.env.EXPO_PUBLIC_API_URL,
+  android: 'http://10.0.2.2:3000',
+});
 
-export const API_URL = 'https://7ec6-2003-f2-6f15-f819-41ac-4755-cfae-aa2c.ngrok-free.app';
-
+// Create the authentication context with default empty values
 const AuthContext = createContext<Partial<AuthProps>>({});
 
-// Storage helper functions for web/native compatibility
+/**
+ * Storage helper functions that provide a unified API for both web and native platforms
+ * This abstraction allows the same code to work across different platforms
+ */
 const storage = {
   async setItem(key: string, value: string) {
     if (Platform.OS === 'web') {
@@ -52,6 +65,7 @@ const storage = {
   },
 };
 
+// Default empty authentication state
 const EMPTY_AUTH_STATE = {
   token: null,
   jwt: null,
@@ -61,6 +75,10 @@ const EMPTY_AUTH_STATE = {
   email: null,
 };
 
+/**
+ * AuthProvider component that manages authentication state and provides auth methods
+ * to all child components through React Context
+ */
 export const AuthProvider = ({ children }: any) => {
   const [authState, setAuthState] = useState<{
     token: string | null;
@@ -72,6 +90,7 @@ export const AuthProvider = ({ children }: any) => {
   }>(EMPTY_AUTH_STATE);
   const [initialized, setInitialized] = useState(false);
 
+  // On component mount, try to load the saved token from storage
   useEffect(() => {
     const loadToken = async () => {
       const data = await storage.getItem(TOKEN_KEY);
@@ -85,6 +104,9 @@ export const AuthProvider = ({ children }: any) => {
     loadToken();
   }, []);
 
+  /**
+   * Updates the authentication state with data from a token response
+   */
   const updateAuthStateFromToken = (object: any) => {
     setAuthState({
       token: object.token,
@@ -96,6 +118,10 @@ export const AuthProvider = ({ children }: any) => {
     });
   };
 
+  /**
+   * Authenticates a user with email and password
+   * Stores the JWT token in secure storage upon successful authentication
+   */
   const signIn = async (email: string, password: string) => {
     const result = await fetch(`${API_URL}/auth/login`, {
       method: 'POST',
@@ -116,6 +142,10 @@ export const AuthProvider = ({ children }: any) => {
     return result;
   };
 
+  /**
+   * Registers a new user with email and password
+   * Automatically signs in the user upon successful registration
+   */
   const register = async (email: string, password: string) => {
     const result = await fetch(`${API_URL}/auth/register`, {
       method: 'POST',
@@ -138,14 +168,20 @@ export const AuthProvider = ({ children }: any) => {
     return json;
   };
 
+  /**
+   * Signs out the current user by removing the token from storage
+   * and resetting the auth state
+   */
   const signOut = async () => {
     await storage.removeItem(TOKEN_KEY);
 
     setAuthState(EMPTY_AUTH_STATE);
   };
 
+  // Helper property to check if the current user is a therapist
   const isTherapist = authState.role === 'therapist';
 
+  // Context value to be provided to consumers
   const value = {
     onRegister: register,
     signIn,
@@ -158,7 +194,10 @@ export const AuthProvider = ({ children }: any) => {
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
-// Easy access to our Provider
+/**
+ * Custom hook to easily access the auth context throughout the app
+ * Throws an error if used outside of AuthProvider
+ */
 export const useAuth = () => {
   return useContext(AuthContext) as AuthProps;
 };

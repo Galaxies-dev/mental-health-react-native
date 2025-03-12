@@ -46,15 +46,12 @@ const Page = () => {
     return () => {
       // cleanup the call on unmount if the call was not left already
       if (call?.state.callingState !== CallingState.LEFT) {
-        console.log('leaving call');
         call?.leave();
       }
     };
   }, [call]);
 
   if (!call) {
-    console.log('call is null');
-
     return (
       <View className="flex-1 items-center justify-center">
         <Text className="text-lg text-gray-700">Session has not started yet...</Text>

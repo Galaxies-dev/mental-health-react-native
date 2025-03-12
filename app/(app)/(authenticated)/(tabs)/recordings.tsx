@@ -65,7 +65,6 @@ const Page = () => {
         }
       })
     );
-    console.log('appointments:', appointments);
     setAppointments(appointments);
   };
 
