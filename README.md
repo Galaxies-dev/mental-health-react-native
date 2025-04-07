@@ -1,6 +1,6 @@
 # React Native Mental Health App with Stream Chat & Video Call
 
-This is a React Native Mental Health App that leverages [Stream](https://getstream.io/)'s powerful chat and video calling capabilities to connect patients with therapists. The app features secure real-time messaging, video consultations, appointment scheduling, and support groups - all powered by Stream's robust communication infrastructure.
+This is a React Native Mental Health App that leverages [Stream](https://dub.sh/getstream)'s powerful chat and video calling capabilities to connect patients with therapists. The app features secure real-time messaging, video consultations, appointment scheduling, and support groups - all powered by Stream's robust communication infrastructure.
 
 Key Stream features include:
 
@@ -14,11 +14,10 @@ Key Stream features include:
 - Video session recording and automatic transcription
 
 Featured Packages:
-
 - [Expo Router](https://docs.expo.dev/routing/introduction/) file-based navigation
-- [Stream Chat](https://getstream.io/chat/docs/react-native/) for chat
-- [Stream Video](https://getstream.io/video/docs/react-native/) for video call
-- [Stream Moderation](https://getstream.io/moderation/docs/) for content moderation
+- [Stream Chat](https://getstream.io/chat/docs/react-native?utm_source=youtube&utm_medium=referral&utm_content=&utm_campaign=simon ) for chat
+- [Stream Video](https://getstream.io/video/docs/react-native?utm_source=youtube&utm_medium=referral&utm_content=&utm_campaign=simon ) for video call
+- [Stream Moderation](https://getstream.io/moderation/docs?utm_source=youtube&utm_medium=referral&utm_content=&utm_campaign=simon ) for content moderation
 - [NativeWind](https://www.nativewind.dev/) for styling
 - [Expo Video](https://docs.expo.dev/versions/latest/sdk/video/) for video playback
 - [Datetime Picker](@react-native-community/datetimepicker) for date and time picker
