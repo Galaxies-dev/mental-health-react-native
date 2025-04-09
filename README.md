@@ -1,5 +1,8 @@
 # React Native Mental Health App with Stream Chat & Video Call
 
+<img src="./ankurad_stream.png" alt="Stream Chat, Audio, Video & Feeds with AI Moderation" width="100%" />
+
+
 This is a React Native Mental Health App that leverages [Stream](https://dub.sh/getstream)'s powerful chat and video calling capabilities to connect patients with therapists. The app features secure real-time messaging, video consultations, appointment scheduling, and support groups - all powered by Stream's robust communication infrastructure.
 
 Key Stream features include:
@@ -26,6 +29,24 @@ Featured Packages:
 - [Zod](https://zod.dev/) for schema validation
 - [React Native Incall Manager](https://github.com/react-native-incall-manager/react-native-incall-manager) for audio handling
 - [React Native Secure Store](https://github.com/react-native-securestore/react-native-securestore) for secure storage
+
+---
+
+### 🎥 Live Demo
+
+ Watch and build this mental health app step by step:
+
+📺 [https://youtu.be/A8gJFybTPr0?si=MbVOcnPJEfRWCOmi](https://youtu.be/A8gJFybTPr0?si=MbVOcnPJEfRWCOmi)
+
+---
+
+### ⚡ Start Building with Stream
+
+Want to build your own AI-powered chat, audio, video, and feeds experience like this?
+
+👉 [Click here to create your free maker account on Stream](https://getstream.io/maker-account/?utm_source=youtube&utm_medium=referral&utm_campaign=simon)
+
+---
 
 ## Setup
 
