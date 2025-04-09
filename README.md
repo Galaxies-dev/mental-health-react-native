@@ -35,9 +35,13 @@ Featured Packages:
 
 ### 🎥 Live Demo
 
- Watch and build this mental health app step by step:
+Watch and build this mental health app step by step:
 
-📺 [https://youtu.be/A8gJFybTPr0?si=MbVOcnPJEfRWCOmi](https://youtu.be/A8gJFybTPr0?si=MbVOcnPJEfRWCOmi)
+<p align="center">
+  <a href="https://youtu.be/A8gJFybTPr0?si=MbVOcnPJEfRWCOmi" target="_blank">
+    <img src="https://img.youtube.com/vi/A8gJFybTPr0/maxresdefault.jpg" alt="Build a React Native Mental Health App with Stream Chat & Video Call" width="100%" />
+  </a>
+</p>
 
 ---
 
