@@ -1,7 +1,8 @@
 # React Native Mental Health App with Stream Chat & Video Call
 
-<img src="./screenshots/ankurad_stream.png" alt="Stream Chat, Audio, Video & Feeds with AI Moderation" width="100%" />
-
+<a href="https://getstream.io/chat/sdk/react-native/?utm_source=youtube&utm_medium=referral&utm_content=&utm_campaign=simon" target="_blank">
+  <img src="./screenshots/ankurad_stream.png" alt="Stream Chat, Audio, Video & Feeds with AI Moderation" width="100%" />
+</a>
 
 This is a React Native Mental Health App that leverages [Stream](https://dub.sh/getstream)'s powerful chat and video calling capabilities to connect patients with therapists. The app features secure real-time messaging, video consultations, appointment scheduling, and support groups - all powered by Stream's robust communication infrastructure.
 
